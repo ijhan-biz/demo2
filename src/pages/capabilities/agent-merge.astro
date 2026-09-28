@@ -1,0 +1,21 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="Agent Merge">
+  <h1>Agent Merge</h1>
+  <p>
+    리뷰에서 발견한 문제를 수정하고 변경 사항을 병합하는 에이전트 기능은 GitHub의 일반 자동 병합과
+    별개입니다. demo2의 이번 실습은 Agent Merge를 사용하거나 검증하는 과정이 아닙니다.
+    이 저장소에는 에이전트인 것처럼 동작하거나 리뷰 지적 사항을 자동으로 수정하는 워크플로가 없습니다.
+  </p>
+  <p>
+    저장소 설정 <code>allow_auto_merge</code>는 조건을 충족한 풀리퀘스트(PR)에 일반 자동 병합을
+    허용할 뿐입니다. Agent Merge를 활성화하거나 리뷰 지적 사항을 해결하지 않으며,
+    누가 수정했는지를 증명하지도 않습니다. Dependabot 업데이트에도 리뷰와 테스트가 필요합니다.
+  </p>
+  <div class="card">
+    demo2에서는 사용자가 실제 변경 사항과 리뷰를 읽고 필수 검사의 통과를 확인한 뒤 병합합니다.
+    선택적으로 GitHub 자동 병합(Enable auto-merge)을 예약할 수 있지만 예약 전에도 직접 검토해야 합니다.
+    실패한 검사를 우회하지 말고, 일반 자동 병합을 에이전트의 자동 수정이나 Agent Merge로 설명하지 마세요.
+  </div>
+</Layout>

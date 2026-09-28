@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="GitHub Actions (CI/CD)">
+  <h1>GitHub Actions (CI/CD)</h1>
+  <p>
+    <code>.github/workflows/deploy.yml</code>은 병합된 풀리퀘스트(PR)를 공개 사이트에 반영합니다.
+    <code>main</code>에 푸시할 때마다 다음 단계를 실행합니다.
+  </p>
+  <ol>
+    <li><code>npm ci</code>로 의존성 설치</li>
+    <li><code>npm test</code>로 Node 내장 테스트 실행</li>
+    <li><code>npm audit --audit-level=high</code> 실행 — 높음(high) 또는 치명적(critical) 취약점이 있으면 빌드 작업 실패</li>
+    <li>Astro 사이트 빌드</li>
+    <li><code>package.json</code>과 <code>package-lock.json</code>이 검증 중 바뀌지 않았는지 확인</li>
+    <li>SHA로 고정한 GitHub Actions를 통한 산출물 업로드</li>
+    <li>빌드한 사이트를 GitHub Pages에 배포</li>
+  </ol>
+  <p>
+    이 안전한 버전은 직접 참조하는 GitHub Actions를 검증된 전체 커밋 SHA로 고정하고,
+    빌드에는 저장소 읽기 권한만 부여합니다. 배포 작업에만 Pages와 ID 토큰 쓰기 권한을 부여합니다.
+    Node 설정 입력값은 Node 22를 사용합니다.
+  </p>
+  <p>
+    PR과 수동 워크플로 실행은 빌드 검증만 수행하며 배포하지 않습니다.
+    배포하려면 <code>main</code> 푸시와 Pages 권한 설정이 필요합니다.
+    의존성 검토는 이 워크플로에 포함되어 있지 않습니다. 검증 통과를 필수로 요구하는 것은
+    별도의 저장소 설정이며, 이 파일만으로 적용 여부를 확인할 수는 없습니다.
+  </p>
+  <p>demo2 생성 후 <code>build</code>를 필수 검사로 설정할 예정입니다. PR의 최신 커밋에서 이 검사가
+    통과했는지 확인하고, CodeQL을 별도로 구성했다면 그 결과도 확인하세요.
+    병합 후에는 Actions의 main 푸시 커밋과 Pages 배포 커밋이 실제 병합 결과와 일치하는지 확인합니다.</p>
+</Layout>

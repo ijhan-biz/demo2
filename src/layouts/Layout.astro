@@ -1,0 +1,93 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'demo2: 이슈부터 코드 리뷰, CI, Pages 배포까지 직접 연습하는 한국어 사이트' } = Astro.props;
+// Normalise BASE_URL so project-page navigation keeps its separating slash.
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
+---
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title} · demo2</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href={base}>demo2 · Ship with AI</a>
+      <nav>
+        <a href={`${base}pipeline/`}>파이프라인</a>
+        <a href={`${base}capabilities/copilot-code-review/`}>코드 리뷰</a>
+        <a href={`${base}capabilities/agent-merge/`}>Agent Merge</a>
+        <a href={`${base}capabilities/github-actions/`}>GitHub Actions</a>
+        <a href={`${base}capabilities/security-review/`}>보안 검토</a>
+        <a href={`${base}capabilities/lifecycle-automation/`}>개발 생애주기</a>
+        <a href={`${base}secure-supply-chain/`}>공급망 보안</a>
+        <a href={`${base}diy/`}>직접 해보기</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>AI Genius — 시즌 5 에피소드 3: "Ship with AI: AI로 완성하는 코드 리뷰부터 보안, 배포까지"</p>
+    </footer>
+    <style>
+      :root {
+        color-scheme: light;
+        --max-width: 780px;
+        --fg: #1b1f23;
+        --muted: #57606a;
+        --accent: #0969da;
+        --border: #d0d7de;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        color: var(--fg);
+        line-height: 1.6;
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+      }
+      .site-header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .brand { font-weight: 700; text-decoration: none; color: var(--fg); font-size: 1.1rem; }
+      nav { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+      nav a { color: var(--muted); text-decoration: none; font-size: 0.92rem; }
+      nav a:hover { color: var(--accent); }
+      main {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 2rem 1.5rem 4rem;
+      }
+      .site-footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+        padding: 2rem 1rem;
+        border-top: 1px solid var(--border);
+      }
+      h1 { font-size: 1.9rem; text-wrap: balance; }
+      h2 { font-size: 1.3rem; margin-top: 2rem; }
+      code { background: rgba(110,118,129,0.15); padding: 0.1rem 0.35rem; border-radius: 4px; }
+      pre { background: #24292e; color: #e1e4e8; padding: 1rem; border-radius: 8px; overflow-x: auto; }
+      .card {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1.2rem 1.4rem;
+        margin: 1rem 0;
+      }
+    </style>
+  </body>
+</html>

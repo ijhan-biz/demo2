@@ -1,0 +1,26 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="GitHub Copilot 코드 리뷰">
+  <h1>GitHub Copilot 코드 리뷰</h1>
+  <p>
+    demo2의 이슈 담당 Copilot과 PR의 GitHub Copilot 리뷰어는 역할이 다릅니다.
+    자동 리뷰 규칙은 저장소 생성 후 별도로 설정·확인해야 하며, 계정 이용 자격과 정책에 따라 사용할 수 있습니다.
+    에이전트의 초안 PR 작업이 끝나면 Ready for review로 전환하고 Reviewers와 실제 리뷰 결과를 확인하세요.
+    준비할 규칙은 <code>copilot_code_review</code>이며, 새 푸시 리뷰는 켜고 초안 리뷰는 끕니다.
+  </p>
+  <p>리뷰어는 변경 사항을 읽고 다음과 같은 문제에 코드 줄별 댓글을 남길 수 있습니다. 안전한 시작 코드에 아래 문제가 있다는 뜻은 아닙니다.</p>
+  <ul>
+    <li>커밋 SHA 대신 태그로 지정된 서드파티 GitHub Actions</li>
+    <li>작업에 필요한 범위보다 넓은 권한을 요청하는 워크플로</li>
+    <li>서드파티 스크립트에서 빠진 <code>integrity</code>/<code>crossorigin</code> 속성</li>
+    <li>입력값 검증이 없는 폼 처리 코드</li>
+  </ul>
+  <p>미리 정해진 보안 경고를 기다리지 마세요. 실제 댓글의 타당성을 판단해 필요한 수정만 요청하고,
+    수정된 커밋의 리뷰와 CI를 다시 확인하세요. 유효한 지적이 없다면 문제를 만들 필요도 없습니다.</p>
+  <p>
+    이런 문제는 의존성 검사기가 탐지하는 취약점과는 다릅니다. 코드 품질과 방어적 코딩에 대한
+    판단이 필요합니다. GitHub Copilot 코드 리뷰는 알려진 패턴뿐 아니라 코드의 의도까지
+    살펴보는 리뷰어 역할을 합니다.
+  </p>
+</Layout>
