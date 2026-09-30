@@ -2,8 +2,13 @@
 interface Props {
   title: string;
   description?: string;
+  home?: boolean;
 }
-const { title, description = 'demo2: 이슈부터 코드 리뷰, CI, Pages 배포까지 직접 연습하는 한국어 사이트' } = Astro.props;
+const {
+  title,
+  description = 'demo2: 이슈부터 코드 리뷰, CI, Pages 배포까지 직접 연습하는 한국어 사이트',
+  home = false,
+} = Astro.props;
 // Normalise BASE_URL so project-page navigation keeps its separating slash.
 const rawBase = import.meta.env.BASE_URL;
 const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
@@ -16,7 +21,7 @@ const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
     <meta name="description" content={description} />
     <title>{title} · demo2</title>
   </head>
-  <body>
+  <body class:list={{ 'home-page': home }}>
     <header class="site-header">
       <a class="brand" href={base}>demo2 · Ship with AI</a>
       <nav>
@@ -31,7 +36,7 @@ const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
         <a href={`${base}diy/`}>직접 해보기</a>
       </nav>
     </header>
-    <main>
+    <main class:list={{ 'home-layout': home }}>
       <slot />
     </main>
     <footer class="site-footer">
@@ -55,6 +60,19 @@ const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
         word-break: keep-all;
         overflow-wrap: anywhere;
       }
+      body.home-page {
+        --home-surface: #fff7f1;
+        --home-card: #fff;
+        --home-charcoal: #2f2927;
+        --home-rose: #b5485d;
+        --home-rose-dark: #8e3446;
+        --home-ink: #312b29;
+        --home-muted: #625955;
+        --home-border: #e8d8d0;
+        --home-radius: 18px;
+        --home-space: clamp(1rem, 2vw, 1.5rem);
+        background: var(--home-surface);
+      }
       .site-header {
         display: flex;
         flex-wrap: wrap;
@@ -72,6 +90,10 @@ const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
         margin: 0 auto;
         padding: 2rem 1.5rem 4rem;
       }
+      main.home-layout {
+        max-width: 1200px;
+        padding: 1.5rem 1.5rem 4rem;
+      }
       .site-footer {
         text-align: center;
         color: var(--muted);
@@ -88,6 +110,10 @@ const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
         border-radius: 10px;
         padding: 1.2rem 1.4rem;
         margin: 1rem 0;
+      }
+      .home-page a:focus-visible {
+        outline: 3px solid var(--home-rose);
+        outline-offset: 3px;
       }
     </style>
   </body>
